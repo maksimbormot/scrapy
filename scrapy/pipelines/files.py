@@ -121,7 +121,7 @@ class S3FilesStore(object):
     def _get_boto_bucket(self):
         # disable ssl (is_secure=False) because of this python bug:
         # http://bugs.python.org/issue5103
-        c = self.S3Connection(self.AWS_ACCESS_KEY_ID, self.AWS_SECRET_ACCESS_KEY, is_secure=False)
+        c = self.S3Connection(self.AWS_ACCESS_KEY_ID, self.AWS_SECRET_ACCESS_KEY, is_secure=Settings.AWS_SECURE_CONNECTION)
         return c.get_bucket(self.bucket, validate=False)
 
     def _get_boto_key(self, path):
